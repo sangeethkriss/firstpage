@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Special Page</title>
+<style>
+    body {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        height: 100vh;
+        margin: 0;
+        background-color: #f5f5f5;
+        font-family: Arial, sans-serif;
+    }
+    #clickButton {
+        padding: 15px 30px;
+        font-size: 1.2em;
+        color: #fff;
+        background-color: #ff4d4d;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+    }
+    #clickButton:hover, #nextButton:hover {
+        background-color: #e60000;
+    }
+    #content {
+        text-align: center;
+        display: none;
+    }
+    #imageContainer img {
+        max-width: 300px;
+        height: auto;
+        margin-top: 20px;
+        border-radius: 10px;
+    }
+    #typingText {
+        margin-top: 20px;
+        font-size: 1.2em;
+        font-weight: bold;
+        color: #333;
+        white-space: nowrap;
+        overflow: hidden;
+        border-right: 3px solid;
+        animation: typing 4s steps(40, end), blink-caret 0.75s step-end infinite;
+    }
+    @keyframes typing {
+        from { width: 0; }
+        to { width: 100%; }
+    }
+    @keyframes blink-caret {
+        from, to { border-color: transparent; }
+        50% { border-color: #333; }
+    }
+    #nextButton {
+        display: none; /* Initially hidden */
+        padding: 15px 30px;
+        font-size: 1.2em;
+        color: #fff;
+        background-color: #ff4d4d;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        margin-top: 20px;
+    }
+</style>
+</head>
+<body>
+
+<button id="clickButton">Click here 👈🏻</button>
+
+<div id="content">
+    <div id="imageContainer">
+        <img src="https://i.pinimg.com/736x/06/54/7a/06547a402611c9e9157175f37f329823.jpg" alt="Red Rose">
+    </div>
+    <div id="typingTextContainer">
+        <p id="typingText"></p>
+    </div>
+    <button id="nextButton">Click here 👈🏻</button>
+</div>
+
+<script>
+    document.getElementById("clickButton").addEventListener("click", function() {
+        document.getElementById("clickButton").style.display = "none";
+        document.getElementById("content").style.display = "block";
+
+        // Typing effect text
+        const text = "Theesko e puvvu navvesay oka navvu\nNi navvante naku chala istam but only when I am the reason for your smile";
+        let index = 0;
+        const typingTextElement = document.getElementById("typingText");
+
+        function typeText() {
+            if (index < text.length) {
+                typingTextElement.innerHTML += text[index] === "\n" ? "<br>" : text[index];
+                index++;
+                setTimeout(typeText, 100);
+            } else {
+                // Show next button after typing effect finishes
+                document.getElementById("nextButton").style.display = "inline-block";
+            }
+        }
+        typeText();
+    });
+
+    // Add event listener to the next button if needed for additional functionality
+    document.getElementById("nextButton").addEventListener("click", function() {
+        alert("You clicked the next button!");
+    });
+</script>
+
+</body>
+</html>
